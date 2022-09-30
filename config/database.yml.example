@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: localhost
+
+development:
+  <<: *default
+  database: test_docker_development
+
+test:
+  <<: *default
+  database: test_docker_test
+
+production:
+  <<: *default
+  database: test_docker_production
+  username: test_docker
+  password: <%= ENV['CROSS-CRAWLER_DATABASE_PASSWORD'] %>
